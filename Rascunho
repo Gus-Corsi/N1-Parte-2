@@ -1,0 +1,25 @@
+Alunos = {"marco": "email"}
+
+
+def mostrarmenu():
+    print("\nDigite 0 para sair")
+    print("Digite 1 para adicionar um aluno")
+    print("Digite 2 para excluir um aluno")
+    print("Digite 3 para exibir um aluno")
+    print("Digite 4 para pesquisar aluno")
+
+
+def novoaluno():
+    nome = input("Digite o nome\n")
+    email = input("Digite o email\n")
+    Alunos[nome] = email
+
+
+mostrarmenu()
+escolha = int(input("\nQual opção você deseja? "))
+
+while escolha == 1:
+    novoaluno()
+    mostrarmenu()
+    print(f"Pronto! O aluno {nome.title()} foi adicionado à lista de alunos.")
+    escolha = int(input("\nQual opção você deseja? "))
