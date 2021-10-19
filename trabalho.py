@@ -1,49 +1,88 @@
-#dicionario de alunos
-Alunos = {"marco": "email",
-"paulo":"hotmail",
-"matheus": "matheusemail",
-"jean": "jeanemail",
+# dicionario de alunos
+Alunos = {'marco@yahoo.com.br': 'marco',
+          'paulo@hotmail.com': 'paulo',
+          'matheus@gmail.com': 'matheus',
+          'jean@bol.com': 'jean',
+          'bruna@outlook.com.br': 'bruna'}
 
- }
+
+# Mostrando a lista de alunos
 def mostralist():
-    for aluno, email in Alunos.items():
-        print(aluno,":" ,email)
-    mostrarmenu() 
-#Mostrandando em oredem alfabetica
-def mostra_alf():
-    for aluno, email in sorted(Alunos.items()):    
-        print(aluno,":" ,email)
-    mostrarmenu() 
-
-#Excluindo um aluno
-def excluiraluno():
-    nome= str(input("Digite o nome do aluno que deseja excluir\n"))
-    Alunos.pop(nome)
-    print(Alunos)
+    print()
+    for email, aluno in Alunos.items():
+        print(f'Nome:', aluno.title(), '| Email: ', email)
     mostrarmenu()
 
 
-#Criando um novo aluno 
+# Mostrando a lista em ordem alfabetica
+def mostra_alf():
+    print()
+    for email, aluno in sorted(Alunos.items()):
+        print(f'Nome:', aluno.title(), '| Email: ', email)
+    mostrarmenu()
+
+
+# Excluindo um aluno
+def excluiraluno():
+    email = str(input("Digite o email do(a) aluno(a) que deseja excluir:\n"))
+    if email in Alunos:
+        del Alunos[email]
+    else:
+        print("Esse email não está cadastrado")
+        mostrarmenu()
+    mostra_alf()
+    mostrarmenu()
+
+
+# Criando um novo aluno
 def novoaluno():
     nome = input("Digite o nome\n")
     email = input("Digite o email\n")
-    Alunos[nome] = email
-    print(Alunos)
+    Alunos[email] = nome
+    mostralist()
     mostrarmenu()
 
 
-#funcao para mostra o menu    
+# Procurar um aluno na lista
+def procuraraluno():
+    nome = str(input("Digite o nome do(a) aluno(a) que procura:\n"))
+    if nome in Alunos.values():
+        print(f"O aluno {nome} está cadastrado na lista de alunos!")
+        mostrarmenu()
+    else:
+        print(f"\nNão encontramos nenhum(a) aluno(a) chamado {nome} na lista.")
+        num = int(
+            input("\nGostaria de adicioná-lo à lista? Digite 1 para sim e 0 para não."))
+        if num == 1:
+            novoaluno()
+        else:
+            mostrarmenu()
+
+
+# Alterar nome de um aluno da lista
+def alterarnome():
+    email = str(input("Digite o email do(a) aluno(a) que procura:\n"))
+    if email in Alunos:
+        aluno = str(input("Qual o novo nome do(a) aluno(a)?\n"))
+        Alunos.update({email: aluno})
+        mostrarmenu()
+    else:
+        print("Esse email não está cadastrado")
+        mostrarmenu()
+
+
+# Funcao para mostrar o menu
 def mostrarmenu():
-    
-    print("Digite 0 para sair")
-    print("Digite 1 para criar alunos")
-    print("Digite 2 para excluir alunos")
-    print("Digite 3 para exibir alunos")
-    print("Digite 4 para exibir alunos em oredem alfabetica ")
-    print("Digite 5 para pesquisar aluno")
-    print("Digite 6 alterar user aluno")
-    escolha = int(input("Qual opcao deseja ?\n"))
-    if escolha == 1 :
+
+    print("\nDigite 0 para sair")
+    print("Digite 1 para cadastrar um aluno")
+    print("Digite 2 para excluir um aluno")
+    print("Digite 3 para exibir os alunos em ordem de cadastro")
+    print("Digite 4 para exibir os alunos em ordem alfabética")
+    print("Digite 5 para procurar um aluno")
+    print("Digite 6 para alterar o nome de um aluno\n")
+    escolha = int(input("Qual opção deseja?\n"))
+    if escolha == 1:
         novoaluno()
     elif escolha == 2:
         excluiraluno()
@@ -51,12 +90,13 @@ def mostrarmenu():
         mostralist()
     elif escolha == 4:
         mostra_alf()
+    elif escolha == 5:
+        procuraraluno()
+    elif escolha == 6:
+        alterarnome()
     elif escolha == 0:
-          pass
-        
+        pass
 
 
-
-
-mostrarmenu() 
-
+print()
+mostrarmenu()
