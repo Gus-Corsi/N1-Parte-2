@@ -3,7 +3,8 @@ Alunos = {'marco@yahoo.com.br': 'marco',
           'paulo@hotmail.com': 'paulo',
           'matheus@gmail.com': 'matheus',
           'jean@bol.com': 'jean',
-          'bruna@outlook.com.br': 'bruna'}
+          'bruna@outlook.com.br': 'bruna'
+          'lucas@yahoo.com': 'lucas'}
 
 
 # Mostrando a lista de alunos
